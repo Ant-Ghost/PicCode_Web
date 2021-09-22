@@ -1,0 +1,54 @@
+{% extends "steg/base.html" %}
+{% block content %}
+<!-- Header-->
+        <header class="bg-transparent py-5">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="text-center my-5">
+                            <h1 class="display-5 fw-bolder text-white mb-2">PicCode</h1>
+                            <h4 class=" text-white mb-4">Hide your private text inside an innocent picture.</h4>
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                <a class="btn btn-warning btn-lg px-4 me-sm-3" href="/encode/">Encode</a>
+                                <a class="btn btn-outline-warning btn-lg px-4" href="/decode/">Decode</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Features section-->
+        <section class="py-5 border-bottom" id="features">
+            <div class="container px-5 my-5">
+                <div class="row gx-5">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-warning bg-gradient text-dark rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                        <h2 class="h4 fw-bolder text-white">Steganogrphy</h2>
+                        <p class="text-white">Steganography is the practice of concealing a message within another message or a physical object. In computing/electronic contexts, a computer file, message, image, or video is concealed within another file, message, image, or video.</p>
+                        <a class="text-decoration-none"  style="color:gold;" href="https://en.wikipedia.org/wiki/Steganography">
+                            Wikipedia
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-warning bg-gradient text-dark rounded-3 mb-3"><i class="bi bi-box-arrow-in-down"></i></div>
+                        <h2 class="h4 fw-bolder text-white">Encryption</h2>
+                        <p class="text-white">I have implemented 256-bit AES to encrypt your data using your password. That particular data can be decrypted only by your password.</p>
+                        <a class="text-decoration-none"  style="color:gold;" href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">
+                            AES Encryption
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature bg-warning bg-gradient text-dark rounded-3 mb-3"><i class="bi bi-box-arrow-down"></i></div>
+                        <h2 class="h4 fw-bolder text-white">The LSB Method</h2>
+                        <p class="text-white">For each pixel, color is coded with three bytes: red, green and blue respectively. Each byte indicates the intensity of the corresponding color, and the range is from 0 to 255. It takes a byte corresponding to one of the three colors of a pixel, for example 01010110. The idea is to replace these low order bits of information by those that one wishes to conceal. If the message is successfully hidden in well-chosen then image the naked eye cannot perceive the difference.</p>
+                        <a class="text-decoration-none" style="color:gold;" href="/encode/">
+                            Encode page
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock content %}

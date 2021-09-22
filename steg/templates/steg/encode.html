@@ -1,0 +1,60 @@
+{% extends "steg/base.html" %}
+{% block content %}
+	<section class="py-0 border-bottom" id="features" style="padding-bottom: 100px;">
+            <div class="container px-5 my-5">
+                <div class="row gx-5">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+						<form enctype="multipart/form-data" method="POST" action="">
+							{% csrf_token %}
+							<fieldset class="form-group bg-transparent" style="color:gold; font-weight: 250%;">
+								<legend class="border-bottom mb-4" style="color:gold; font-weight: 300%;">Private Message</legend>
+								<div class="container">
+									<label>Private text: </label>
+									{{ forms.text_data }}
+								</div>
+								<div class="container" style="padding-top: 5px">
+									<label>Select Picture: </label>
+									{{ forms.file_data }}
+								</div>
+								<div class="container" style="padding-top: 10px">
+									<label>Enter Your Password: </label>
+									{{ forms.password }}
+								</div>
+								<div class="container" style="padding-top: 50px">
+									<div class="form-group">
+										<button class="btn btn-warning" type="submit">Encode</button>
+									</div>
+								</div>
+							</fieldset> 
+						</form>                       
+                    </div>
+                    <div class="col-lg-4 mx-auto text-center piccode_encode_center_sysmbol" style="padding-top: 100px; padding-bottom: 80px;">
+                        <div class="feature bg-warning bg-gradient text-dark rounded-3 mb-3"><i class="bi bi-arrow-left-right"></i></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <form>
+							{% csrf_token %}
+							<fieldset class="form-group bg-transparent" style="color:gold; font-weight: 250%;">
+								<legend class="border-bottom mb-4" style="color:gold; font-weight: 300%;">Your Picture With Your Encoded Message</legend>
+								{% if image %}
+									<div class="container">
+										<label>EnCoded Pic: </label>
+										<a href="{{image}}" download style="color:gold">Click to download</a>
+									</div>
+									<div class="container" style="padding-top: 10px;">
+										<label style="font-weight: 400%;">Remember: </label>
+										<p style="font-weight: 350%;">Please remember your password, you cannot see your message without your password.</p>
+									</div>
+								{% endif %}
+							</fieldset> 
+						</form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% if error %}
+        <script type="text/javascript">
+        	alert('{{ error }}');
+        </script>
+        {% endif %}
+{% endblock content %}
