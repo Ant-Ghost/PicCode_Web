@@ -17,5 +17,5 @@ plaintext=b'this is my super secret message '
 ciphertext=cipher.encrypt((pad(plaintext,AES.block_size)))
 
 
-with open("steg/VI_file",'wb') as c_file:
+with open("steg/IV_file",'wb') as c_file:
     c_file.write(cipher.IV)
