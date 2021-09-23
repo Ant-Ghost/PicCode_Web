@@ -56,7 +56,8 @@ class Encode_Image:
                             index_msg+=1
                         pixel_arr[x]=int(pixel_arr[x],2)
                     pixels[j,i]=tuple(pixel_arr)
-        except TypeError:
+        except TypeError as e:
+            print(e)
             self.error_encode[0]=-1
             self.error_encode[1]="IMAGE is corrupted. Try giving images with rgb format"
             return
