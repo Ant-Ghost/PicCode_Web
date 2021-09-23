@@ -27,7 +27,8 @@ def decode(request):
 			psswd=form.cleaned_data['password']
 			obj=PicModel.objects.create(img=image)
 			obj.save()
-			location=(settings.MEDIA_ROOT+"\\"+(obj.img.name).replace('/','\\'))
+			location=(settings.MEDIA_ROOT+"\\"+(obj.img.name).replace('/','\\')) #for Windows OS
+			#location=(settings.MEDIA_ROOT+"/"+(obj.img.name)) #for Linux OS
 			di.stegano_decode(location,psswd)
 			if di.error_decode[0]==-1:
 				context['error']=di.error_decode[1]
