@@ -60,6 +60,7 @@ def encode(request):
 			obj=PicModel.objects.create(img=image)
 			obj.save()
 			location=((settings.MEDIA_ROOT+"\\"+(obj.img.name).replace('/','\\')))
+			#location=(settings.MEDIA_ROOT+"/"+(obj.img.name)) #for Linux OS
 			ei.stegano_encode(text,psswd,location)
 			if ei.error_encode[0]==1:
 				context['error']=ei.error_encode[1]
