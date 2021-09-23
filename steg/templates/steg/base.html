@@ -21,7 +21,8 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'steg/base.css' %}" rel="stylesheet" />
     </head>
-    <body>
+    <body onload="myFunction()">
+        <div id="loading"></div>
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container px-5">
@@ -57,11 +58,19 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="{% static 'steg/js/scripts.js' %}"></script>
+        <script type="text/javascript" src="{% static 'steg/js/scripts.js' %}"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script type="text/javascript">
+            var preloader=document.getElementById('loading');
+
+            function myFunction() {
+                console.log(preloader);
+                preloader.style.display='none';
+            }
+        </script>
     </body>
 </html>
