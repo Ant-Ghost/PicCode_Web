@@ -50,17 +50,25 @@ class Decode_Image:
 
 
     def decode(self,im):
-        pixels_list=list(im.getdata())
-        index=0
-        bytes_decode=''
-        while True:
-            pixel_tuple= pixels_list[index]
-            index+=1
-                    
-            for i in range(0,len(pixel_tuple)):
-                bytes_decode+= str(pixel_tuple[i]&1)
-                if len(bytes_decode)>=8*4 and len(bytes_decode)%8==0 and self.decideAndShow(bytes_decode):
-                    return
+        try:
+            pixels_list=list(im.getdata())
+            index=0
+            bytes_decode=''
+            while True:
+                pixel_tuple= pixels_list[index]
+                # if type(pixel_tuple)!=tuple:
+                #     pixel_tuple=tuple([pixel_tuple])
+                index+=1
+                        
+                for i in range(0,len(pixel_tuple)):
+                    bytes_decode+= str(pixel_tuple[i]&1)
+                    if len(bytes_decode)>=8*4 and len(bytes_decode)%8==0 and self.decideAndShow(bytes_decode):
+                        return
+        except TypeError as e:
+            print(e)
+            self.error_decode[0]=-1
+            self.error_decode[1]="IMAGE is corrupted. Try giving images with rgb format"
+            return
             
             
     def stegano_decode(self,im_path,password):
@@ -70,13 +78,17 @@ class Decode_Image:
         if self.error_decode[0]==0:
             password=password.encode();
             ciphertext=base64.b64decode(self.decode_text.encode())
+            print("ciphertext: ",ciphertext)
             c_obj=Crypting()
             e,plaintext=c_obj.decrypting(ciphertext,password)
+            print("plaintext: ",plaintext)
+            print("error: ",e)
             if e==0:
                 self.decode_text=plaintext
             else:
                 self.error_decode[0]=-1
-                self.error_decode[0]=plaintext
+                self.error_decode[1]=plaintext
+                print("error codes ", self.error_decode)
         im = im.close()
 
 

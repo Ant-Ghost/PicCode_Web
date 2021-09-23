@@ -62,7 +62,7 @@ def encode(request):
 			location=((settings.MEDIA_ROOT+"\\"+(obj.img.name).replace('/','\\')))
 			#location=(settings.MEDIA_ROOT+"/"+(obj.img.name)) #for Linux OS
 			ei.stegano_encode(text,psswd,location)
-			if ei.error_encode[0]==1:
+			if ei.error_encode[0]==-1:
 				context['error']=ei.error_encode[1]
 			else:
 				context['image']=obj.img.url

@@ -41,7 +41,7 @@ class Crypting:
 
         try:
             plaintext=unpad(cipher.decrypt(ciphertext),AES.block_size)
-            #print(plaintext.decode())
+            print("Inside decrypting",plaintext.decode())
             return (0,plaintext.decode())
         except ValueError:
             #print("Wrong Password")

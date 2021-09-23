@@ -29,32 +29,37 @@ class Encode_Image:
 
 
     def encode(self,im, msg):
-        pixels=im.load()
-        pixels_list=list(im.getdata())
-        index_p=0
-        index_msg=0
+        try:
+            pixels=im.load()
+            pixels_list=list(im.getdata())
+            index_p=0
+            index_msg=0
 
-        bytes_msg=self.msg_to_bytes(msg)
-        
+            bytes_msg=self.msg_to_bytes(msg)
+            
 
-        for i in range(im.size[0]):
-            for j in range(im.size[1]):
-                if (index_msg==len(bytes_msg)):
-                    return
+            for i in range(im.size[0]):
+                for j in range(im.size[1]):
+                    if (index_msg==len(bytes_msg)):
+                        return
 
-                
-                pixel_arr=self.msg_to_bytes(pixels_list[index_p])
-                index_p+=1
-                
-                
-                
-                for x in range(0,len(pixel_arr)):
                     
-                    if index_msg<len(bytes_msg):
-                        pixel_arr[x]=pixel_arr[x][:-1]+bytes_msg[index_msg]
-                        index_msg+=1
-                    pixel_arr[x]=int(pixel_arr[x],2)
-                pixels[j,i]=tuple(pixel_arr)
+                    pixel_arr=self.msg_to_bytes(pixels_list[index_p])
+                    index_p+=1
+                    
+                    
+                    
+                    for x in range(0,len(pixel_arr)):
+                        
+                        if index_msg<len(bytes_msg):
+                            pixel_arr[x]=pixel_arr[x][:-1]+bytes_msg[index_msg]
+                            index_msg+=1
+                        pixel_arr[x]=int(pixel_arr[x],2)
+                    pixels[j,i]=tuple(pixel_arr)
+        except TypeError:
+            self.error_encode[0]=-1
+            self.error_encode[1]="IMAGE is corrupted. Try giving images with rgb format"
+            return
 
 
     def stegano_encode(self, secret_message,password, im_path):
@@ -74,7 +79,7 @@ class Encode_Image:
             if os.path.exists(im_path):
                 break
             else:
-                self.error_encode[0]=1;
+                self.error_encode[0]=-1;
                 self.error_encode[1]="Server error"
                 return
         
@@ -96,7 +101,7 @@ class Encode_Image:
         w, h= im.size
         size=w*h
         if size < len(secret_message):
-            self.error_encode[0]=1;
+            self.error_encode[0]=-1;
             self.error_encode[1]="Message too big to fit in Image"
             return
         
