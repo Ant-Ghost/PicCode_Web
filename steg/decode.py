@@ -7,12 +7,12 @@ import base64
 
 class Decode_Image:
 
-    decode_text=''
-    error_decode=[0,'']
+    
 
     
     def __init__(self):
-        pass
+        self.decode_text=''
+        self.error_decode=[0,'']
 
 
 

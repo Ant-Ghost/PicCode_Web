@@ -7,10 +7,10 @@ import base64
 class Encode_Image:
 
 
-    error_encode=[0,'']
+    
 
     def __init__(self):
-        pass
+        self.error_encode=[0,'']
 
 
 
