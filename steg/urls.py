@@ -9,10 +9,7 @@ urlpatterns = [
     path('', views.home, name='PicCode-home'),
     path('decode/', views.decode, name='PicCode-decode'),
     path('encode/', views.encode, name='PicCode-encode'),
+    re_path(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
 ]
 
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-else:
-    urlpatterns += re_path(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT})
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -74,9 +74,7 @@ class Encode_Image:
 
         secret_message=base64.b64encode(c_obj.encrypting(password,secret_message)).decode()
         secret_message="####"+secret_message+"####"
-        print(secret_message)
         while True:
-            print("Checking path....", end='')
             if os.path.exists(im_path):
                 break
             else:
@@ -98,7 +96,6 @@ class Encode_Image:
         fn, fext= os.path.splitext(im_path)
         
         #Comparing image size(pixels) and message length(characters) [no. of pixels >= no. of characters]
-        print("Comparing Image size and Message Length...",end='')
         w, h= im.size
         size=w*h
         if size < len(secret_message):

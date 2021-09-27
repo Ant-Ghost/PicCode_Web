@@ -78,11 +78,8 @@ class Decode_Image:
         if self.error_decode[0]==0:
             password=password.encode();
             ciphertext=base64.b64decode(self.decode_text.encode())
-            print("ciphertext: ",ciphertext)
             c_obj=Crypting()
             e,plaintext=c_obj.decrypting(ciphertext,password)
-            print("plaintext: ",plaintext)
-            print("error: ",e)
             if e==0:
                 self.decode_text=plaintext
             else:

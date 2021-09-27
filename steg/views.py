@@ -27,8 +27,8 @@ def decode(request):
 			psswd=form.cleaned_data['password']
 			obj=PicModel.objects.create(img=image)
 			obj.save()
-			location=(settings.MEDIA_ROOT+"\\"+(obj.img.name).replace('/','\\')) #for Windows OS
-			#location=(settings.MEDIA_ROOT+"/"+(obj.img.name)) #for Linux OS
+			#location=(settings.MEDIA_ROOT+"\\"+(obj.img.name).replace('/','\\')) #for Windows OS
+			location=(settings.MEDIA_ROOT+"/"+(obj.img.name)) #for Linux OS
 			di.stegano_decode(location,psswd)
 			if di.error_decode[0]==-1:
 				context['error']=di.error_decode[1]
@@ -41,7 +41,6 @@ def decode(request):
 		form=UserDecodeForm()
 	context['forms']=form
 	context['fixed']='1'
-	print(context)
 	return render(request, 'steg/decode.html',context)
 
 
@@ -59,8 +58,8 @@ def encode(request):
 			psswd=form.cleaned_data['password']
 			obj=PicModel.objects.create(img=image)
 			obj.save()
-			location=((settings.MEDIA_ROOT+"\\"+(obj.img.name).replace('/','\\')))
-			#location=(settings.MEDIA_ROOT+"/"+(obj.img.name)) #for Linux OS
+			#location=((settings.MEDIA_ROOT+"\\"+(obj.img.name).replace('/','\\')))
+			location=(settings.MEDIA_ROOT+"/"+(obj.img.name)) #for Linux OS
 			ei.stegano_encode(text,psswd,location)
 			if ei.error_encode[0]==-1:
 				context['error']=ei.error_encode[1]
@@ -68,13 +67,11 @@ def encode(request):
 				context['image']=obj.img.url
 			
 		else:
-			print("form is not valid")
 			context['error']="form not valid"
 			form=UserDataForm()
 	else:
 		form=UserDataForm()
 	context['forms']=form
-	print(context)
 	return render(request, 'steg/encode.html',context)
 
 
